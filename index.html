@@ -1,189 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spanish Class Checkout</title>
-  <style>
-    :root {
-      --bg: #f5f7fb;
-      --card: #ffffff;
-      --text: #111;
-      --item: #f0f3f8;
-    }
-
-    body.dark {
-      --bg: #0f172a;
-      --card: #1e293b;
-      --text: #f1f5f9;
-      --item: #334155;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-    body { background: var(--bg); color: var(--text); display: flex; justify-content: center; align-items: center; height: 100vh; }
-
-    .container {
-      background: var(--card);
-      width: 420px;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-
-    h1 { text-align: center; margin-bottom: 10px; }
-
-    .toggle {
-      text-align: right;
-      margin-bottom: 10px;
-    }
-
-    .item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 10px;
-      background: var(--item);
-    }
-
-    .item img {
-      width: 50px;
-      height: 50px;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    .controls {
-      display: flex;
-      gap: 5px;
-    }
-
-    button {
-      border: none;
-      padding: 6px 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      color: white;
-    }
-
-    .add { background: #22c55e; }
-    .remove { background: #f97316; }
-    .reset { background: #ef4444; flex: 1; }
-    .checkout { background: #3b82f6; flex: 1; }
-
-    ul {
-      margin-top: 10px;
-      list-style: none;
-      max-height: 100px;
-      overflow-y: auto;
-      border: 1px solid #555;
-      border-radius: 8px;
-      padding: 5px;
-    }
-
-    .total {
-      margin-top: 15px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 18px;
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spanish Checkout App</title>
+<style>
+:root{
+  --bg:#0f172a; --card:#1e293b; --text:#f1f5f9; --accent:#3b82f6;
+}
+body{margin:0;font-family:Arial;background:var(--bg);color:var(--text);display:flex;justify-content:center;padding:20px}
+.container{width:500px}
+.card{background:var(--card);padding:15px;border-radius:16px;margin-bottom:15px}
+h2{margin-bottom:10px}
+.item{display:flex;align-items:center;justify-content:space-between;margin:8px 0}
+.item img{width:45px;height:45px;border-radius:8px;object-fit:cover}
+.controls button{margin-left:5px}
+button{border:none;border-radius:8px;padding:6px 10px;cursor:pointer;color:white}
+.add{background:#22c55e}
+.remove{background:#ef4444}
+.checkout{background:var(--accent);width:100%;margin-top:10px}
+ul{list-style:none;padding:0;max-height:120px;overflow:auto}
+.total{display:flex;justify-content:space-between;margin-top:10px}
+.receipt{display:none}
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="toggle">
-      <button onclick="toggleDark()">🌙 Toggle</button>
-    </div>
+<div class="container">
 
-    <h1>🍽️ Checkout Español</h1>
+<div class="card">
+<h2>🍽️ Meals</h2>
+<div class="item"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092"><span>Pollo $5</span><div class="controls"><button class="add" onclick="add('Pollo',5)">+</button><button class="remove" onclick="remove('Pollo',5)">-</button></div></div>
+<div class="item"><img src="https://images.unsplash.com/photo-1617196038435-3e2f8efc0e6c"><span>Burrito $7</span><div class="controls"><button class="add" onclick="add('Burrito',7)">+</button><button class="remove" onclick="remove('Burrito',7)">-</button></div></div>
+<div class="item"><img src="https://images.unsplash.com/photo-1605478371332-1d3b7d2d0a73"><span>Quesadilla $6</span><div class="controls"><button class="add" onclick="add('Quesadilla',6)">+</button><button class="remove" onclick="remove('Quesadilla',6)">-</button></div></div>
+</div>
 
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1604908554027-1e3bcb35c50a" />
-      <span>Arroz - $3</span>
-      <div class="controls">
-        <button class="add" onclick="addItem('Arroz',3)">+</button>
-        <button class="remove" onclick="removeItem('Arroz',3)">-</button>
-      </div>
-    </div>
+<div class="card">
+<h2>🥤 Drinks</h2>
+<div class="item"><img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707"><span>Agua $2</span><div class="controls"><button class="add" onclick="add('Agua',2)">+</button><button class="remove" onclick="remove('Agua',2)">-</button></div></div>
+<div class="item"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b"><span>Jugo $3</span><div class="controls"><button class="add" onclick="add('Jugo',3)">+</button><button class="remove" onclick="remove('Jugo',3)">-</button></div></div>
+</div>
 
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" />
-      <span>Pollo - $5</span>
-      <div class="controls">
-        <button class="add" onclick="addItem('Pollo',5)">+</button>
-        <button class="remove" onclick="removeItem('Pollo',5)">-</button>
-      </div>
-    </div>
+<div class="card">
+<h2>🍟 Sides</h2>
+<div class="item"><img src="https://images.unsplash.com/photo-1604908554027-1e3bcb35c50a"><span>Arroz $3</span><div class="controls"><button class="add" onclick="add('Arroz',3)">+</button><button class="remove" onclick="remove('Arroz',3)">-</button></div></div>
+<div class="item"><img src="https://images.unsplash.com/photo-1625944525903-b7a8cdb2f6b5"><span>Nachos $5</span><div class="controls"><button class="add" onclick="add('Nachos',5)">+</button><button class="remove" onclick="remove('Nachos',5)">-</button></div></div>
+</div>
 
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" />
-      <span>Combo - $8</span>
-      <div class="controls">
-        <button class="add" onclick="addItem('Combo',8)">+</button>
-        <button class="remove" onclick="removeItem('Combo',8)">-</button>
-      </div>
-    </div>
+<div class="card">
+<h2>🛒 Cart</h2>
+<ul id="cart"></ul>
+<div class="total"><span>Total:</span><span id="total">$0</span></div>
+<button class="checkout" onclick="checkout()">Checkout</button>
+</div>
 
-    <ul id="cart"></ul>
+<div class="card receipt" id="receipt">
+<h2>🧾 Receipt</h2>
+<ul id="receiptList"></ul>
+<div class="total"><span>Total Paid:</span><span id="receiptTotal"></span></div>
+</div>
 
-    <div class="total">
-      <span>Total:</span>
-      <span id="total">$0</span>
-    </div>
+</div>
 
-    <div class="actions">
-      <button class="reset" onclick="resetCart()">Reset</button>
-      <button class="checkout" onclick="checkout()">Checkout</button>
-    </div>
-  </div>
+<script>
+let total=0;
+let cartItems=[];
 
-  <script>
-    let total = 0;
+function add(name,price){
+ total+=price;
+ cartItems.push({name,price});
+ render();
+}
 
-    function addItem(name, price) {
-      total += price;
-      const li = document.createElement('li');
-      li.textContent = `${name} +$${price}`;
-      document.getElementById('cart').appendChild(li);
-      updateTotal();
-    }
+function remove(name,price){
+ let index=cartItems.findIndex(i=>i.name===name);
+ if(index>-1){
+  total-=price;
+  cartItems.splice(index,1);
+  render();
+ }
+}
 
-    function removeItem(name, price) {
-      if (total >= price) {
-        total -= price;
-        const li = document.createElement('li');
-        li.textContent = `${name} -$${price}`;
-        document.getElementById('cart').appendChild(li);
-        updateTotal();
-      }
-    }
+function render(){
+ let cart=document.getElementById('cart');
+ cart.innerHTML='';
+ cartItems.forEach(i=>{
+  let li=document.createElement('li');
+  li.textContent=`${i.name} $${i.price}`;
+  cart.appendChild(li);
+ });
+ document.getElementById('total').textContent='$'+total;
+}
 
-    function updateTotal() {
-      document.getElementById('total').textContent = `$${total}`;
-    }
-
-    function resetCart() {
-      total = 0;
-      document.getElementById('cart').innerHTML = '';
-      updateTotal();
-    }
-
-    function checkout() {
-      alert('Gracias! Total: $' + total);
-      resetCart();
-    }
-
-    function toggleDark() {
-      document.body.classList.toggle('dark');
-    }
-  </script>
-</body>
-</html>
+function checkout(){
+ document.getElementById('receipt').style.display='block';
+ let list=document.getElementById('receiptList');
+ list.innerHTML='';
+ cartItems.forEach(i=>{
+  let li=document.createElement('li');
+  li.textContent=`${i.name} $${i.price}`;
+  list.appendChild(li);
+ });
+ document.getElementById('receiptTotal').textContent='$'+total;
+ cartItems=[];
+ tota
