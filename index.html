@@ -13,8 +13,8 @@ h2{margin-bottom:10px}
 .category{margin-bottom:15px}
 .item{display:flex;justify-content:space-between;align-items:center;background:var(--card);padding:8px;border-radius:10px;margin:5px 0}
 .controls button{margin-left:5px}
-button{border:none;border-radius:6px;padding:5px 10px;color:white;cursor:pointer}
-.add{background:#22c55e}.remove{background:#ef4444}.checkout{background:#3b82f6;margin-top:auto;padding:10px}
+button{border:none;border-radius:6px;padding:6px 10px;color:white;cursor:pointer}
+.add{background:#22c55e}.remove{background:#ef4444}.checkout{background:#3b82f6;margin-top:5px;padding:10px}.clear{background:#f59e0b;margin-top:5px;padding:10px}
 ul{list-style:none;padding:0;flex:1;overflow:auto}
 .total{display:flex;justify-content:space-between;margin:10px 0;font-size:18px}
 .receipt{display:none}
@@ -31,6 +31,8 @@ ul{list-style:none;padding:0;flex:1;overflow:auto}
 <div class="item"><span>Refresco $2</span><div class="controls"><button class="add" onclick="add('Refresco',2)">+</button><button class="remove" onclick="remove('Refresco',2)">-</button></div></div>
 <div class="item"><span>Jugo $3</span><div class="controls"><button class="add" onclick="add('Jugo',3)">+</button><button class="remove" onclick="remove('Jugo',3)">-</button></div></div>
 <div class="item"><span>Café $2</span><div class="controls"><button class="add" onclick="add('Cafe',2)">+</button><button class="remove" onclick="remove('Cafe',2)">-</button></div></div>
+<div class="item"><span>Té $2</span><div class="controls"><button class="add" onclick="add('Te',2)">+</button><button class="remove" onclick="remove('Te',2)">-</button></div></div>
+<div class="item"><span>Leche $2</span><div class="controls"><button class="add" onclick="add('Leche',2)">+</button><button class="remove" onclick="remove('Leche',2)">-</button></div></div>
 </div>
 
 <div class="category">
@@ -41,6 +43,8 @@ ul{list-style:none;padding:0;flex:1;overflow:auto}
 <div class="item"><span>Plátanos Fritos $4</span><div class="controls"><button class="add" onclick="add('Platanos',4)">+</button><button class="remove" onclick="remove('Platanos',4)">-</button></div></div>
 <div class="item"><span>Papas Fritas $3</span><div class="controls"><button class="add" onclick="add('Papas',3)">+</button><button class="remove" onclick="remove('Papas',3)">-</button></div></div>
 <div class="item"><span>Empanadas $5</span><div class="controls"><button class="add" onclick="add('Empanadas',5)">+</button><button class="remove" onclick="remove('Empanadas',5)">-</button></div></div>
+<div class="item"><span>Pollo $5</span><div class="controls"><button class="add" onclick="add('Pollo',5)">+</button><button class="remove" onclick="remove('Pollo',5)">-</button></div></div>
+<div class="item"><span>Carne $6</span><div class="controls"><button class="add" onclick="add('Carne',6)">+</button><button class="remove" onclick="remove('Carne',6)">-</button></div></div>
 </div>
 
 <div class="category">
@@ -56,6 +60,7 @@ ul{list-style:none;padding:0;flex:1;overflow:auto}
 <ul id="cart"></ul>
 <div class="total"><span>Total:</span><span id="total">$0</span></div>
 <button class="checkout" onclick="checkout()">Checkout</button>
+<button class="clear" onclick="clearCart()">Clear Cart</button>
 
 <div class="receipt" id="receipt">
 <h2>🧾 Receipt</h2>
@@ -64,13 +69,12 @@ ul{list-style:none;padding:0;flex:1;overflow:auto}
 </div>
 </div>
 
+<audio id="sound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
 <script>
 let total=0;let cartItems=[];
 function add(n,p){total+=p;cartItems.push({n,p});render()}
 function remove(n,p){let i=cartItems.findIndex(x=>x.n===n);if(i>-1){total-=p;cartItems.splice(i,1);render()}}
 function render(){let c=document.getElementById('cart');c.innerHTML='';cartItems.forEach(i=>{let li=document.createElement('li');li.textContent=`${i.n} $${i.p}`;c.appendChild(li)});document.getElementById('total').textContent='$'+total}
-function checkout(){document.getElementById('receipt').style.display='block';let l=document.getElementById('receiptList');l.innerHTML='';cartItems.forEach(i=>{let li=document.createElement('li');li.textContent=`${i.n} $${i.p}`;l.appendChild(li)});document.getElementById('receiptTotal').textContent='$'+total;cartItems=[];total=0;render()}
-</script>
-
-</body>
-</html>
+function checkout(){document.getElementById('sound').play();document.getElementById('receipt').style.display='block';let l=document.getElementById('receiptList');l.innerHTML='';cartItems.forEach(i=>{let li=document.createElement('li');li.textContent=`${i.n} $${i.p}`;l.appendChild(li)});document.getElementById('receiptTotal').textContent='$'+total;cartItems=[];total=0;render()}
+func
