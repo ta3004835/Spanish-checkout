@@ -44,6 +44,20 @@ ul{list-style:none;padding:0;max-height:120px;overflow:auto}
 <h2>🍟 Sides</h2>
 <div class="item"><img src="https://images.unsplash.com/photo-1604908554027-1e3bcb35c50a"><span>Arroz $3</span><div class="controls"><button class="add" onclick="add('Arroz',3)">+</button><button class="remove" onclick="remove('Arroz',3)">-</button></div></div>
 <div class="item"><img src="https://images.unsplash.com/photo-1625944525903-b7a8cdb2f6b5"><span>Nachos $5</span><div class="controls"><button class="add" onclick="add('Nachos',5)">+</button><button class="remove" onclick="remove('Nachos',5)">-</button></div></div>
+<div class="item"><img src="https://images.unsplash.com/photo-1552332386-f8dd00dc2f85"><span>Tacos $4</span><div class="controls"><button class="add" onclick="add('Tacos',4)">+</button><button class="remove" onclick="remove('Tacos',4)">-</button></div></div>
+<div class="item"><img src="https://images.unsplash.com/photo-1544025162-d76694265947"><span>Enchiladas $7</span><div class="controls"><button class="add" onclick="add('Enchiladas',7)">+</button><button class="remove" onclick="remove('Enchiladas',7)">-</button></div></div>
+</div>
+
+<div class="card">
+<h2>🥤 Drinks</h2>
+<div class="item"><img src="https://images.unsplash.com/photo-1600275669439-14e40452d20b"><span>Soda $2</span><div class="controls"><button class="add" onclick="add('Soda',2)">+</button><button class="remove" onclick="remove('Soda',2)">-</button></div></div>
+<div class="item"><img src="https://images.unsplash.com/photo-1577805947697-89e18249d767"><span>Limonada $3</span><div class="controls"><button class="add" onclick="add('Limonada',3)">+</button><button class="remove" onclick="remove('Limonada',3)">-</button></div></div>
+</div>
+
+<div class="card">
+<h2>🍟 Sides</h2>
+<div class="item"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add"><span>Papas Fritas $3</span><div class="controls"><button class="add" onclick="add('Papas Fritas',3)">+</button><button class="remove" onclick="remove('Papas Fritas',3)">-</button></div></div>
+<div class="item"><img src="https://images.unsplash.com/photo-1598514982531-2b5c5f2d6f0d"><span>Guacamole $4</span><div class="controls"><button class="add" onclick="add('Guacamole',4)">+</button><button class="remove" onclick="remove('Guacamole',4)">-</button></div></div>
 </div>
 
 <div class="card">
@@ -102,4 +116,10 @@ function checkout(){
  });
  document.getElementById('receiptTotal').textContent='$'+total;
  cartItems=[];
- tota
+ total=0;
+ render();
+}
+</script>
+
+</body>
+</html>
