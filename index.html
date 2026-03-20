@@ -3,57 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spanish Checkout App</title>
+<title>Restaurant POS</title>
 <style>
-:root{--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--accent:#3b82f6}
-body{margin:0;font-family:Arial;background:var(--bg);color:var(--text);display:flex;justify-content:center;padding:20px}
-.container{width:500px}
-.card{background:var(--card);padding:15px;border-radius:16px;margin-bottom:15px}
+:root{--bg:#0b1220;--panel:#111827;--card:#1f2937;--text:#f9fafb;--accent:#22c55e}
+body{margin:0;font-family:Arial;background:var(--bg);color:var(--text);display:flex;height:100vh}
+.menu{width:60%;overflow-y:auto;padding:15px}
+.cartPanel{width:40%;background:var(--panel);padding:15px;display:flex;flex-direction:column}
 h2{margin-bottom:10px}
-.item{display:flex;align-items:center;justify-content:space-between;margin:8px 0}
-.item img{width:45px;height:45px;border-radius:8px;object-fit:cover}
+.category{margin-bottom:15px}
+.item{display:flex;justify-content:space-between;align-items:center;background:var(--card);padding:8px;border-radius:10px;margin:5px 0}
 .controls button{margin-left:5px}
-button{border:none;border-radius:8px;padding:6px 10px;cursor:pointer;color:white}
-.add{background:#22c55e}.remove{background:#ef4444}.checkout{background:var(--accent);width:100%;margin-top:10px}
-ul{list-style:none;padding:0;max-height:120px;overflow:auto}
-.total{display:flex;justify-content:space-between;margin-top:10px}
+button{border:none;border-radius:6px;padding:5px 10px;color:white;cursor:pointer}
+.add{background:#22c55e}.remove{background:#ef4444}.checkout{background:#3b82f6;margin-top:auto;padding:10px}
+ul{list-style:none;padding:0;flex:1;overflow:auto}
+.total{display:flex;justify-content:space-between;margin:10px 0;font-size:18px}
 .receipt{display:none}
 </style>
 </head>
 <body>
-<div class="container">
 
-<div class="card">
-<h2>🍽️ Food</h2>
-<div class="item"><img src="https://images.unsplash.com/photo-1604908554027-1e3bcb35c50a"><span>Arroz $3</span><div class="controls"><button class="add" onclick="add('Arroz',3)">+</button><button class="remove" onclick="remove('Arroz',3)">-</button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0"><span>Frijoles $3</span><div class="controls"><button class="add" onclick="add('Frijoles',3)">+</button><button class="remove" onclick="remove('Frijoles',3)">-</button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092"><span>Aguacate $4</span><div class="controls"><button class="add" onclick="add('Aguacate',4)">+</button><button class="remove" onclick="remove('Aguacate',4)">-</button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1604908176997-431e6bdf5a6e"><span>Plátanos Fritos $4</span><div class="controls"><button class="add" onclick="add('Platanos',4)">+</button><button class="remove" onclick="remove('Platanos',4)">-</button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add"><span>Papas Fritas $3</span><div class="controls"><button class="add" onclick="add('Papas',3)">+</button><button class="remove" onclick="remove('Papas',3)">-</button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092"><span>Empanadas $5</span><div class="controls"><button class="add" onclick="add('Empanadas',5)">+</button><button class="remove" onclick="remove('Empanadas',5)">-</button></div></div>
-</div>
+<div class="menu">
 
-<div class="card">
+<div class="category">
 <h2>🥤 Drinks</h2>
-<div class="item"><img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707"><span>Agua $2</span><div class="controls"><button class="add" onclick="add('Agua',2)">+</button><button class="remove" onclick="remove('Agua',2)">-</button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1600275669439-14e40452d20b"><span>Refresco $2</span><div class="controls"><button class="add" onclick="add('Refresco',2)">+</button><button class="remove" onclick="remove('Refresco',2)">-</button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b"><span>Jugo $3</span><div class="controls"><button class="add" onclick="add('Jugo',3)">+</button><button class="remove" onclick="remove('Jugo',3)">-</button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1544148103-0773bf10d330"><span>Café $2</span><div class="controls"><button class="add" onclick="add('Cafe',2)">+</button><button class="remove" onclick="remove('Cafe',2)">-</button></div></div>
+<div class="item"><span>Agua $2</span><div class="controls"><button class="add" onclick="add('Agua',2)">+</button><button class="remove" onclick="remove('Agua',2)">-</button></div></div>
+<div class="item"><span>Agua Grande $3</span><div class="controls"><button class="add" onclick="add('Agua Grande',3)">+</button><button class="remove" onclick="remove('Agua Grande',3)">-</button></div></div>
+<div class="item"><span>Refresco $2</span><div class="controls"><button class="add" onclick="add('Refresco',2)">+</button><button class="remove" onclick="remove('Refresco',2)">-</button></div></div>
+<div class="item"><span>Jugo $3</span><div class="controls"><button class="add" onclick="add('Jugo',3)">+</button><button class="remove" onclick="remove('Jugo',3)">-</button></div></div>
+<div class="item"><span>Café $2</span><div class="controls"><button class="add" onclick="add('Cafe',2)">+</button><button class="remove" onclick="remove('Cafe',2)">-</button></div></div>
 </div>
 
-<div class="card">
+<div class="category">
+<h2>🍽️ Food</h2>
+<div class="item"><span>Arroz $3</span><div class="controls"><button class="add" onclick="add('Arroz',3)">+</button><button class="remove" onclick="remove('Arroz',3)">-</button></div></div>
+<div class="item"><span>Frijoles $3</span><div class="controls"><button class="add" onclick="add('Frijoles',3)">+</button><button class="remove" onclick="remove('Frijoles',3)">-</button></div></div>
+<div class="item"><span>Aguacate $4</span><div class="controls"><button class="add" onclick="add('Aguacate',4)">+</button><button class="remove" onclick="remove('Aguacate',4)">-</button></div></div>
+<div class="item"><span>Plátanos Fritos $4</span><div class="controls"><button class="add" onclick="add('Platanos',4)">+</button><button class="remove" onclick="remove('Platanos',4)">-</button></div></div>
+<div class="item"><span>Papas Fritas $3</span><div class="controls"><button class="add" onclick="add('Papas',3)">+</button><button class="remove" onclick="remove('Papas',3)">-</button></div></div>
+<div class="item"><span>Empanadas $5</span><div class="controls"><button class="add" onclick="add('Empanadas',5)">+</button><button class="remove" onclick="remove('Empanadas',5)">-</button></div></div>
+</div>
+
+<div class="category">
+<h2>🍱 Combos</h2>
+<div class="item"><span>Combo #1 (Pollo + Arroz + Agua) $10</span><div class="controls"><button class="add" onclick="add('Combo 1',10)">+</button></div></div>
+<div class="item"><span>Combo #2 (Empanada + Papas + Refresco) $9</span><div class="controls"><button class="add" onclick="add('Combo 2',9)">+</button></div></div>
+</div>
+
+</div>
+
+<div class="cartPanel">
 <h2>🛒 Cart</h2>
 <ul id="cart"></ul>
 <div class="total"><span>Total:</span><span id="total">$0</span></div>
 <button class="checkout" onclick="checkout()">Checkout</button>
-</div>
 
-<div class="card receipt" id="receipt">
+<div class="receipt" id="receipt">
 <h2>🧾 Receipt</h2>
 <ul id="receiptList"></ul>
 <div class="total"><span>Total Paid:</span><span id="receiptTotal"></span></div>
 </div>
-
 </div>
 
 <script>
@@ -63,5 +71,6 @@ function remove(n,p){let i=cartItems.findIndex(x=>x.n===n);if(i>-1){total-=p;car
 function render(){let c=document.getElementById('cart');c.innerHTML='';cartItems.forEach(i=>{let li=document.createElement('li');li.textContent=`${i.n} $${i.p}`;c.appendChild(li)});document.getElementById('total').textContent='$'+total}
 function checkout(){document.getElementById('receipt').style.display='block';let l=document.getElementById('receiptList');l.innerHTML='';cartItems.forEach(i=>{let li=document.createElement('li');li.textContent=`${i.n} $${i.p}`;l.appendChild(li)});document.getElementById('receiptTotal').textContent='$'+total;cartItems=[];total=0;render()}
 </script>
+
 </body>
 </html>
